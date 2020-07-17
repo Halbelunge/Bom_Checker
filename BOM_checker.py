@@ -35,6 +35,7 @@ failsafe_died = 'Failsafe died at '
 time_to_panic = '! Time to panic!'
 link_died_in = 'Link gestorben in '
 all_links_are_working = "Alle Links funktionieren noch"
+x_links_died = " sind insgesamt gestorben!"
 
 def get_chat_id(update):
     chat_id = update['message']["chat"]["id"]
@@ -87,8 +88,10 @@ for link in soup.findAll('a'):
                     number_of_died_links += 1
                 else:
                     print('nope',fail_source[searching])
-if(number_of_died_links == 0):
+if(number_of_died_links <= 0):
     send_telegram_message(all_links_are_working)
+else:
+    send_telegram_message(number_of_died_links + x_links_died)
 #print('finish')
 
 
