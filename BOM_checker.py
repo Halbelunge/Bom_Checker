@@ -21,6 +21,7 @@ faillink.append(requests.get('https://de.aliexpress.com/item/4000917929337.html'
 #Links for BOM and Telegram Bot
 BOM_URL = ""
 BOT_Token = 'BOTTOKEN'
+CHAT_ID = CHAT_ID
 BOT_URL = 'https://api.telegram.org/bot' + BOT_Token + '/' 
 
 #global_Variables
@@ -48,7 +49,7 @@ def last_update():
     return result[len(result)-1]
 
 def send_telegram_message(message_text):
-    chat_id = get_chat_id(last_update())
+    chat_id = CHAT_ID #get_chat_id(last_update())
     params = {"chat_id": chat_id, "text": message_text}
     response = requests.post(BOT_URL + "sendMessage", data=params)
     return response
