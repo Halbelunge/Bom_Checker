@@ -83,7 +83,7 @@ for link in soup.findAll('a'):
         print(link.get('href'))
         for searching in range(len(fail_source)):
             if(fail_source[searching] in link.get('href')):
-                if(fail_strings[searching] in link_contens):
+                if(fail_strings[searching] in link_contens.text):
                     send_telegram_message(link_died_in + fail_source[searching])
                     send_telegram_message(link.get('href'))
                     number_of_died_links += 1
